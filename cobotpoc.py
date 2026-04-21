@@ -99,7 +99,7 @@ def selectBestCamera(allCameras):
     # 2. Fallback: return the first device
     return allCameras[0]
 
-def listMicrophones(printRequested=False):
+def listMicrophones():
     """Return available microphones as dictionaries of index, name, channels, default_samplerate"""
     devices = sd.query_devices()
 
@@ -128,12 +128,7 @@ def listMicrophones(printRequested=False):
             "SampleRate": device["default_samplerate"]
         })
 
-    # If requested, print each dictionary to console as its own line
-    if printRequested:
-        for mic in allMicrophones:
-            print(mic)
-
-    return allMicrophones
+    return allMicrophones or None
 
 def selectBestMicrophone(allMicrophones):
     """
