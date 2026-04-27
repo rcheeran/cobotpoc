@@ -36,13 +36,15 @@ You need:
 
 ```bash
 sudo apt update
-sudo apt update
+sudo apt upgrade
+sudo apt install usbutils
 sudo apt install portaudio19-dev
 sudo apt install ffmpeg
 sudo apt install python3-dev python3-pip python3.12-venv python-is-python3
+
 ```
 
-### 2. Nvidia driver
+### 2. Nvidia driver:
 
 Check if you have the full (closed-source, not-installed-by-default) Nvidia driver working:
 
@@ -57,7 +59,7 @@ sudo apt install nvidia-driver-580
 sudo reboot
 ```
 
-### 3. Create a Python virtual environment
+### 3. Create a Python virtual environment:
 
 Necessary on Ubuntu to work around guardrails that discourage messing with system Python:
 
@@ -76,6 +78,7 @@ pip install numpy scipy
 pip install sounddevice soundfile
 pip install opencv-python transformers torch torchvision pillow
 pip install nemo-toolkit[asr]
+pip install pymycobot pyserial
 ```
 
 > [!NOTE]
@@ -83,6 +86,16 @@ pip install nemo-toolkit[asr]
 
 > [!NOTE]
 > Installing Nvidia NeMo will pull in 2 GB+ of dependencies: CUDA, cuDNN, cuBLAS, and so on.
+
+### 5. Prepare MyCobot serial connection:
+
+- Find the device path under `/dev/`, typically something like `ttyACM0`. Note: this may change after each reboot.
+- When instantiating robot in Python, set PORT = the above, and BAUD = `115200` (fixed bit rate).
+- Give yourself permission to the `dialout` group for accessing serial devices:
+
+```bash
+sudo usermod -aG dialout $USER
+```
 
 ## How to run
 
