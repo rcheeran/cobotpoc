@@ -89,8 +89,8 @@ pip install pymycobot pyserial
 
 ### 5. Prepare MyCobot serial connection:
 
-- Find the device path under `/dev/`, typically something like `ttyACM0`. Note: this may change after each reboot.
-- When instantiating robot in Python, set PORT = the above, and BAUD = `115200` (fixed bit rate).
+- Find the device path under `/dev/`, something like `ttyACM0`. This may change after each reboot.
+- To instantiate robot in Python, set PORT = above, and BAUD = `115200` (fixed bit rate).
 - Give yourself permission to the `dialout` group for accessing serial devices:
 
 ```bash
